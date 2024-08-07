@@ -11,20 +11,28 @@
 <body>
 
     <div class="container">
-        <div class="left_box">
-            <div class="header">
-                <a href="index.html">
-                    <h1>Music Player</h1>
-                </a>
-                <p>Villan</p>
-            </div>
-            <div class="playlist">
-                <h2 class="choco">My Library</h2>
-                <div class="songList">
-
+       <nav>
+            <!-- <h2>fhslfdslsl</h2> -->
+            <div class="left_box" id="mysidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <div class="header">
+                    <a href="index.html">
+                        <h1>Music Player</h1>
+                    </a>
+                    <p>Villan</p>
+                </div>
+                <div class="playlist">
+                    <h2 class="choco">My Library</h2>
+                    <div class="songList">
+    
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div id="main">
+                <span onclick="openNav()">&#9776;</span>
+              </div>
+       </nav>
 
         <div class="right_box">
             <!-- <img src="music.svg" alt="" id="img" >-->
@@ -60,6 +68,17 @@
         <p>Developed By Villan</p>
     </footer>
     <script src="app.js"></script>
+    <script>
+        const openNav = () => {
+            document.getElementById("mysidenav").style.width = "270px";
+            document.getElementById("main").style.marginLeft = "0px";
+          }
+          
+        const closeNav= () => {
+            document.getElementById("mysidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+          }
+    </script>
 </body>
 
 </html>

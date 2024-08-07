@@ -69,7 +69,7 @@ async function nameOfFolder() {
 }
 
 async function name(folder) {
-    URL = `/music/${folder}/`
+    URL = `musicPlayer/music/${folder}/`
     let response = await fetch(URL);
     let data = await response.text();
     // console.log(data);
