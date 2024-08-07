@@ -46,7 +46,7 @@ const songplay = document.querySelector(".playsongname")
 
 async function nameOfFolder() {
 
-    let response = await fetch("/music/");
+    let response = await fetch("musicPlayer/music/");
     let data = await response.text();
     // console.log(data)
     let div1 = document.createElement("div")
@@ -69,7 +69,7 @@ async function nameOfFolder() {
 }
 
 async function name(folder) {
-    URL = `musicPlayer/music/${folder}/`
+    URL = `/music/${folder}/`
     let response = await fetch(URL);
     let data = await response.text();
     // console.log(data);
