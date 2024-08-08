@@ -228,17 +228,17 @@ footer p{
 @media only screen and (max-width : 600px){
     .container{
         display: flex;
-        /* flex-direction: column; */
+        flex-direction: column;
     }
-    .header{
-        /* display: none; */
+    .header p{
+        font-size: 70px;
     }
-    nav{
+    /* nav{
         display: flex;
-        align-items: center;
+        align-items: ;
         justify-content: space-around;
-        /* justify-content: end; */
-    }
+        justify-content: end;
+    } */
     .left_box{
         
         height: 100%;
@@ -280,6 +280,7 @@ footer p{
         padding: 16px;
         display: flex;
         justify-content: end;
+        height: 20;
     }
     span {
         font-size: 30px;
@@ -288,12 +289,7 @@ footer p{
         /* position: fixed; */
         
     }
-    .songName{
-        border: none;
-        width: 100vw;
-        height: 83vh;
-        flex-direction: column;
-    }
+    
 
     .songList{
         width: 100vw;
@@ -306,8 +302,9 @@ footer p{
     .library{
         /* display: block; */
         height: 100px;
-        width: 300px;
+        width: 200px;
         padding: 0px 20px 0px 20px;
+        background-size: 90px;
     }
 
     footer{
@@ -315,12 +312,20 @@ footer p{
     }
 
     .right_box{
-        display: none;
         width: 100vw;
         height: 83vh;
         background: linear-gradient(0deg, #404E4D , #969696);
+        margin-left: 10px;
     }
-    
+
+    .songName{
+        border: none;
+        width: 100vw;
+        height: 83vh;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
 
     .player{
         position: fixed;
@@ -328,6 +333,17 @@ footer p{
         width: 90vw;
         height: 100px;
         background-color: #404E4D;
+    }
+    .playsongname{
+        margin-top: 0px;
+    }
+    .playeritem{
+        /* display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; */
+        width: 90vw;
+        height: 100px;
     }
     .seekbar{
         width: 70vw;

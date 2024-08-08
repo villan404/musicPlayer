@@ -46,7 +46,7 @@ const songplay = document.querySelector(".playsongname")
 
 async function nameOfFolder() {
 
-    let response = await fetch("https://github.com/villan404/musicPlayer/music/");
+    let response = await fetch("music/");
     let data = await response.text();
     // console.log(data)
     let div1 = document.createElement("div")
@@ -68,11 +68,11 @@ async function nameOfFolder() {
 
 }
 
-async function name() {
-    URL = `https://github.com/villan404/musicPlayer/music/${folder}/`
+async function name(folder) {
+    URL = `music/${folder}/`
     let response = await fetch(URL);
     let data = await response.text();
-    console.log(data);
+    // console.log(data);
     let div1 = document.createElement("div")
     div1.innerHTML = data
     song.innerHTML = ''
