@@ -44,18 +44,21 @@ const songplay = document.querySelector(".playsongname")
 //     name()
 // })
 
-async function nameOfFolder() {
+//async 
+function nameOfFolder() {
 
-    let response = await fetch("music/");
-    let data = await response.text();
+    // let response = await fetch("music/");
+    // let data = await response.text();
     // console.log(data)
-    let div1 = document.createElement("div")
-    div1.innerHTML = data
-    let songName = div1.getElementsByClassName("name")
-    songList.innerHTML = '';
-    for (let i = 1; i < songName.length; i++) {
-        songList.innerHTML += `<div class = "library">${songName[i].textContent}</div>`
-    }
+
+    // let div1 = document.createElement("div")
+    // div1.innerHTML = data
+    // let songName = div1.getElementsByClassName("name")
+    // songList.innerHTML = '';
+    // for (let i = 1; i < songName.length; i++) {
+    //     songList.innerHTML += `<div class = "library">${songName[i].textContent}</div>`
+    // }
+
     let div = document.querySelectorAll(".library");
 
     div.forEach((s, index) => {
@@ -68,23 +71,46 @@ async function nameOfFolder() {
 
 }
 
-async function name(folder) {
-    URL = `music/${folder}/`
-    let response = await fetch(URL);
-    let data = await response.text();
-    // console.log(data);
-    let div1 = document.createElement("div")
-    div1.innerHTML = data
-    song.innerHTML = ''
-    let songName = div1.getElementsByClassName("name")
-    console.log(songName);
-    song.innerHTML += `<h3>${folder}</h3>`
-    for (let i = 1; i < songName.length; i++) {
-        song.innerHTML += `
+// async 
+// function name(folder) {
+//     // URL = `music/${folder}/`
+//     // let response = await fetch(URL);
+//     // let data = await response.text();
+//     // console.log(data);
+//     let div1 = document.createElement("div")
+//     div1.innerHTML = URL
+//     song.innerHTML = ''
+//     let songName = div1.getElementsByClassName("name")
+//     console.log(songName);
+//     song.innerHTML += `<h3>${folder}</h3>`
+//     for (let i = 1; i < songName.length; i++) {
+//         song.innerHTML += `
         
-        <div class = "song">${songName[i].textContent}</div>`
+//         <div class = "song">${songName[i].textContent}</div>`
+//     }
+//     attachingSong();
+// }
+
+function name(folder) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/music/${folder}/`, false); // 'false' makes the request synchronous
+    xhr.send();
+
+    if (xhr.status === 200) {
+        const div1 = document.createElement("div");
+        div1.innerHTML = xhr.responseText;
+        song.innerHTML = `<h3>${folder}</h3>`;
+        const songName = div1.getElementsByClassName("name");
+
+        for (let i = 1; i < songName.length; i++) {
+            song.innerHTML += `
+                <div class="song">${songName[i].textContent}</div>
+            `;
+        }
+        attachingSong();
+    } else {
+        console.error('Failed to fetch data');
     }
-    attachingSong();
 }
 
 
@@ -126,10 +152,10 @@ const attachingSong = () => {
         //     song = `${songName[number].innerHTML}`
         // }
         // number2 = number;
-        console.log(currentIndex)
+        // console.log(currentIndex)
         currentIndex = Math.max(0, currentIndex - 1);
         playsong(div[currentIndex].innerHTML)
-        console.log(currentIndex)
+        // console.log(currentIndex)
     })
 
     forw.addEventListener("click", () => {
@@ -250,8 +276,8 @@ const playsong = (songN) => {
         metadataLoaded = true
         const duration = songUrl.duration;
         // changeformat(duration)
-        console.log(duration)
-        console.log(duration)
+        // console.log(duration)
+        // console.log(duration)
         // console.log(timer)
         timer.innerHTML = `${changeformat(songUrl.currentTime)} / ${changeformat(duration)}`;
         dot.style.animation = `line ${duration}s linear`;
@@ -315,7 +341,6 @@ const changeformat = (duration) => {
 
     return `${changeMinutes}:${changeSeconds}`;
 }
-
 
 
 // name();
