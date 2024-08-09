@@ -103,7 +103,7 @@ function name(folder) {
     songs.forEach(songName => {
         song.innerHTML += `
             <div class="song">${songName}</div>
-        `;
+            `;
     });
     attachingSong();
 }
@@ -258,7 +258,7 @@ const attachingSong = () => {
 }
 
 const playsong = (songN) => {
-    songUrl.src = `/music/${folderName}/` + songN
+    songUrl.src = `music/${folderName}/` + songN
     console.log(songUrl)
     songUrl.play()
     metadataLoaded = false;
