@@ -293,7 +293,7 @@ const playsong = (songN) => {
     songUrl.addEventListener('timeupdate', () => {
         if (metadataLoaded) {
             timer.innerHTML = `${changeformat(songUrl.currentTime)} / ${changeformat(songUrl.duration)}`
-            const seekPosition = (songUrl.currentTime / songUrl.duration) * 100;
+            const seekPosition = (songUrl.currentTime / songUrl.duration) * 95;
             dot.style.left = `${seekPosition}%`;
         }
         // volume.innerHTML = `${songUrl.volume}`

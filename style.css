@@ -326,9 +326,12 @@ footer p{
         border: none;
         width: 100vw;
         height: 83vh;
-        flex-direction: column;
+        /* flex-direction: column; */
         /* justify-content: center; */
         align-items: center;
+        flex-wrap: wrap;
+        /* align-items: center; */
+        justify-content: center;
     }
 
     .player{
