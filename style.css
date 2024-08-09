@@ -208,11 +208,13 @@ footer p{
 
 @keyframes line {
     from{
-        transform: translateX(0px); 
+        transform: translateX(0%);
+        /* left: 0%; */
         /* width: 0px; */
     }
     to {
        transform: translateX(23vw);
+       /* left: 100%; */
        /* width: 100px; */
     }
 }

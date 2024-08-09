@@ -18,6 +18,7 @@ let URL;
 const left = document.querySelector(".left_box");
 const right = document.querySelector(".right_box");
 const songplay = document.querySelector(".playsongname")
+const seekBarContainer = document.querySelector(".seekbar")
 // console.log(left, right)
 // choco.addEventListener("click", () => {
 //     // async function chooseLibrary() {
@@ -92,13 +93,14 @@ function nameOfFolder() {
 // }
 // Example predefined song list
 
-const predefinedSongs = {
-    "Bhojpuri Song": ["O Maahi.m4a", "o sajni re.m4a"],
-    "Love Song": ["Shree.m4a", "Tum Hi Ho .m4a"]
+const Songs = {
+    "Bhojpuri Song": ["Palang Sagwan Ke.mp3", "Maroon Color Sadiya.mp3", "Nathuniya.mp3", "गरम मसल Garam Masala .mp3"],
+    "Love Song": ["Apna Bana Le.m4a", "Dekha Tenu Pehli Pehli Baar Ve.mp3", "O Maahi.m4a", "Raataan Lambiyan  - Copy (2).m4a", "Zara Sa .m4a" ],
+    "Sad Song" : ["Vilen - Ek Raat (Official Video).mp3","Vilen - Chidiya (Official Video).mp3", "JOKER HARDY SANDHU FULL SONG Music_ B PRAAK Latest Punjabi Songs.mp3", "Mere Liye - Lyrical Broken But Beautiful 3 Sidharth Shukla & Sonia Rathee Akhil Sachdeva.mp3"]
 };
 
 function name(folder) {
-    const songs = predefinedSongs[folder] || [];
+    const songs = Songs[folder] || [];
     song.innerHTML = `<h3>${folder}</h3>`;
     songs.forEach(songName => {
         song.innerHTML += `
@@ -251,10 +253,17 @@ const attachingSong = () => {
     })
 
 
-
-
-
-
+    seekBarContainer.addEventListener('click', (event) => {
+        const containerWidth = seekBarContainer.offsetWidth;
+        const clickX = event.clientX - seekBarContainer.getBoundingClientRect().left;
+        const newTime = (clickX / containerWidth) * songUrl.duration;
+        songUrl.currentTime = newTime;
+        dot.style.left = `${(clickX / containerWidth) * 95}%`;
+        // console.log("seek bar info")
+        // console.log(containerWidth);
+        // console.log(clickX)
+        // console.log(newTime)
+    });
 }
 
 const playsong = (songN) => {
@@ -284,9 +293,19 @@ const playsong = (songN) => {
     songUrl.addEventListener('timeupdate', () => {
         if (metadataLoaded) {
             timer.innerHTML = `${changeformat(songUrl.currentTime)} / ${changeformat(songUrl.duration)}`
+            const seekPosition = (songUrl.currentTime / songUrl.duration) * 100;
+            dot.style.left = `${seekPosition}%`;
         }
         // volume.innerHTML = `${songUrl.volume}`
     })
+
+    songUrl.addEventListener('ended', () => {
+        // Reset dot position to start
+        dot.style.left = '-5%';
+        bacchi = true; // Ensure play button is in correct state
+        img.src = 'play.svg'; // Set play button image
+        dot.style.animationPlayState = 'paused'; // Pause animation
+    });
 
 
     pausesong()
