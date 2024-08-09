@@ -88,6 +88,16 @@ body{
     background: linear-gradient(180deg, #404E4D , #969696);
     display: flex;
     justify-content: center;
+    /* align-self: center; */
+    /* text-align: center; */
+}
+.about{
+    width: 200px;
+    /* border: 2px solid black; */
+    height: 20px;
+    text-align: center;
+    font-size: 50px;
+    align-self:baseline;
 }
 .songName{
     width: 76vw;

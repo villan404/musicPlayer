@@ -12,53 +12,15 @@ let songUrl = new Audio();
 let bacchi = false;
 let currentIndex = 0;
 let metadataLoaded = false;
-// const choco = document.querySelector(".choco");
 let folderName;
 let URL;
 const left = document.querySelector(".left_box");
 const right = document.querySelector(".right_box");
 const songplay = document.querySelector(".playsongname")
 const seekBarContainer = document.querySelector(".seekbar")
-// console.log(left, right)
-// choco.addEventListener("click", () => {
-//     // async function chooseLibrary() {
+const about = document.querySelector(".about");
 
-//     //     let response = await fetch("list.json");
-//     //     let data = await response.json();
-//     //     console.log(data)
-//     //     folderName = data.title;
-//     //     // n = "music"
-//     //     URL = `/${folderName}/`
-//     //     name();
-
-
-//     // }
-//     // chooseLibrary();
-// })
-
-
-// choco.addEventListener("click", () => {
-//     folderName = "music";
-//     URL = `/${folderName}/`
-//     console.log(URL)
-//     console.log("hsdfsdf")
-//     name()
-// })
-
-//async 
 function nameOfFolder() {
-
-    // let response = await fetch("music/");
-    // let data = await response.text();
-    // console.log(data)
-
-    // let div1 = document.createElement("div")
-    // div1.innerHTML = data
-    // let songName = div1.getElementsByClassName("name")
-    // songList.innerHTML = '';
-    // for (let i = 1; i < songName.length; i++) {
-    //     songList.innerHTML += `<div class = "library">${songName[i].textContent}</div>`
-    // }
 
     let div = document.querySelectorAll(".library");
 
@@ -66,32 +28,14 @@ function nameOfFolder() {
         s.addEventListener("click", () => {
             // console.log(s.innerHTML)
             folderName = s.innerHTML
+            about.innerHTML = " "
+            about.style.display = "none"
             name(folderName);
         })
     })
 
 }
 
-// async 
-// function name(folder) {
-//     // URL = `music/${folder}/`
-//     // let response = await fetch(URL);
-//     // let data = await response.text();
-//     // console.log(data);
-//     let div1 = document.createElement("div")
-//     div1.innerHTML = URL
-//     song.innerHTML = ''
-//     let songName = div1.getElementsByClassName("name")
-//     console.log(songName);
-//     song.innerHTML += `<h3>${folder}</h3>`
-//     for (let i = 1; i < songName.length; i++) {
-//         song.innerHTML += `
-        
-//         <div class = "song">${songName[i].textContent}</div>`
-//     }
-//     attachingSong();
-// }
-// Example predefined song list
 
 const Songs = {
     "Bhojpuri Song": ["Palang Sagwan Ke.mp3", "Maroon Color Sadiya.mp3", "Nathuniya.mp3", "गरम मसल Garam Masala .mp3"],
@@ -117,65 +61,23 @@ const attachingSong = () => {
     div.forEach((s, index) => {
         s.addEventListener("click", () => {
             currentIndex = index
-            // console.log(index)
-            // let p = s.innerHTML
+
             playsong(s.innerHTML)
             // console.log(p)
             img.src = 'pause.svg'
-            // let number = 0;
-            // let number2 = 0
-            // dot.style.animation = `line ${hello}s linear`;
-            // let song = s.innerHTML
-            // for (let i = 1; i < songName.length; i++) {
-            //     if (song === songName[i].innerHTML) {
-            //         number = i;
-
-            //     }
-
-            // }
 
         })
 
     })
     back.addEventListener("click", () => {
-        // number--;
-        // if (number <= 0) {
-        //     console.log("Nothing is availabel before 0")
-        //     number = 1;
-        // }
-        // else {
-        //     playsong(songName[number].innerHTML)
-        //     // console.log(songName[number].innerHTML, number)
-        //     song = `${songName[number].innerHTML}`
-        // }
-        // number2 = number;
-        // console.log(currentIndex)
+
         currentIndex = Math.max(0, currentIndex - 1);
         playsong(div[currentIndex].innerHTML)
         // console.log(currentIndex)
     })
 
     forw.addEventListener("click", () => {
-        // for(let i = 1; i < songName.length; i++){
-        // i = number;
-        // if (number >= songName.length) {
-        //     console.log("dsfjfsjdl")
-        //     number = songName.length;
-        // }
-        // else {
 
-        //     if (song === songName[i].innerHTML) {
-        //         // number2 = i;
-        //         number++;
-        //     }
-        //     else {
-        //         playsong(songName[number].innerHTML)
-        //         // console.log(songName[number2].innerHTML, number2)
-
-        //         song = `${songName[number].innerHTML}`
-        //     }
-        // }
-        // }
         currentIndex = Math.min(div.length - 1, currentIndex + 1);
         playsong(div[currentIndex].innerHTML)
     })
@@ -213,43 +115,6 @@ const attachingSong = () => {
                 // playsong()?
             }
         }
-        // if (keyName === "ArrowLeft") {
-        //     console.log("left arrow clicked")
-        //     number--;
-        //     if (number <= 0) {
-        //         console.log("Nothing is availabel before 0")
-        //         number = 1;
-        //     }
-        //     else {
-        //         playsong(songName[number].innerHTML)
-        //         // console.log(songName[number].innerHTML, number)
-        //         song = `${songName[number].innerHTML}`
-        //     }
-
-        // }
-
-
-        // if (keyName === "ArrowRight") {
-        //     console.log("rgith arrow clicked")
-        //     i = number;
-        //     if (number >= songName.length) {
-        //         console.log("dsfjfsjdl")
-        //         number = songName.length;
-        //     }
-        //     else {
-
-        //         if (song === songName[i].innerHTML) {
-        //             // number2 = i;
-        //             number++;
-        //         }
-        //         else {
-        //             playsong(songName[number].innerHTML)
-        //             // console.log(songName[number2].innerHTML, number2)
-
-        //             song = `${songName[number].innerHTML}`
-        //         }
-        //     }
-        // }
     })
 
 
@@ -259,10 +124,6 @@ const attachingSong = () => {
         const newTime = (clickX / containerWidth) * songUrl.duration;
         songUrl.currentTime = newTime;
         dot.style.left = `${(clickX / containerWidth) * 95}%`;
-        // console.log("seek bar info")
-        // console.log(containerWidth);
-        // console.log(clickX)
-        // console.log(newTime)
     });
 }
 
