@@ -92,26 +92,26 @@ function nameOfFolder() {
 // }
 
 function name(folder) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/music/${folder}/`, false); // 'false' makes the request synchronous
-    xhr.send();
+    fetch(`music/${folder}/`)
+        .then(response => response.text())
+        .then(data => {
+            const div1 = document.createElement("div");
+            div1.innerHTML = data;
+            song.innerHTML = `<h3>${folder}</h3>`;
+            const songName = div1.getElementsByClassName("name");
 
-    if (xhr.status === 200) {
-        const div1 = document.createElement("div");
-        div1.innerHTML = xhr.responseText;
-        song.innerHTML = `<h3>${folder}</h3>`;
-        const songName = div1.getElementsByClassName("name");
-
-        for (let i = 1; i < songName.length; i++) {
-            song.innerHTML += `
-                <div class="song">${songName[i].textContent}</div>
-            `;
-        }
-        attachingSong();
-    } else {
-        console.error('Failed to fetch data');
-    }
+            for (let i = 1; i < songName.length; i++) {
+                song.innerHTML += `
+                    <div class="song">${songName[i].textContent}</div>
+                `;
+            }
+            attachingSong();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
+
 
 
 
