@@ -90,28 +90,23 @@ function nameOfFolder() {
 //     }
 //     attachingSong();
 // }
+// Example predefined song list
+
+const predefinedSongs = {
+    "Bhojpuri Song": ["O Maahi.m4a", "o sajni re.m4a"],
+    "Love Song": ["Shree.m4a", "Tum Hi Ho .m4a"]
+};
 
 function name(folder) {
-    fetch(`music/${folder}/`)
-        .then(response => response.text())
-        .then(data => {
-            const div1 = document.createElement("div");
-            div1.innerHTML = data;
-            song.innerHTML = `<h3>${folder}</h3>`;
-            const songName = div1.getElementsByClassName("name");
-
-            for (let i = 1; i < songName.length; i++) {
-                song.innerHTML += `
-                    <div class="song">${songName[i].textContent}</div>
-                `;
-            }
-            attachingSong();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    const songs = predefinedSongs[folder] || [];
+    song.innerHTML = `<h3>${folder}</h3>`;
+    songs.forEach(songName => {
+        song.innerHTML += `
+            <div class="song">${songName}</div>
+        `;
+    });
+    attachingSong();
 }
-
 
 
 
